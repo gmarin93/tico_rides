@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="<?=base_url()?>/assets/bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url()?>/assets/configperfil.css">
     <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="<?=base_url()?>/JS/bootstrap.min.js"></script>
@@ -25,16 +24,11 @@
                     <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="<#">Rides
           <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                        <li><a href="<?php echo site_url('Ride/addride') ?>">Agregar</a></li>
-                        
-                         <li><a href="<?php echo site_url('Ride/editride') ?>">Editar</a></li>
-                   
+                            <li><a href="<?php echo site_url('Ride/addride') ?>">Agregar</a></li>
                         </ul>
                     </li>
-                     <li><a href="<?php echo site_url('Ride/conf') ?>">Configuracion</a></li>
-                      <li><a  href="<?php echo site_url('Ride/salir') ?>">Salir</a></li>
-                   
-                   
+                    <li><a href="<?php echo site_url('Ride/conf') ?>">Configuracion</a></li>
+                    <li><a href="<?php echo site_url('Ride/salir') ?>">Salir</a></li>
                 </ul>
             </div>
         </div>
@@ -56,46 +50,64 @@
             <div class="item"> <img src="<?=base_url()?>/IMAGES/body4.jpg" alt="City mall" width="1200" height="700"> </div>
             <div class="item"> <img src="<?=base_url()?>/IMAGES/body2.jpg" alt="Los Angeles" width="900" height="600"> </div>
             <div class="carousel-caption">
-                 
-                          
-    
-            
-            <?php
+                <?php
                     
                 if(isset($_SESSION['user'])) {
                     
                     $user=$_SESSION['user'];
-                    //$foto=$_SESSION['user_foto'];
+                   // $foto=$_SESSION['imagen'];
+                   
                    // var_dump($foto);
                     
                 }
     
     ?>
-
-    
-
-            <h2 id="user1"><?php echo isset($user)?$user->usuario:''; ?></h2>
-
-        <section>
-           <div class="foto-perfil">
-           <img id="logo-Uber" style="max-width: 10%;" src="">
-            
-           </div>
-
-      </section>
-
-                  <div class="container">
-                       
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Nombre Ride</th>
-                                <th>Esta en</th>
-                                <th>Va para</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="">
+                    <h2 id="user1"><?php echo isset($user)?$user->usuario:''; ?></h2>
+                    <section>
+                        <div class="foto-perfil"> <img id="logo-Uber" style="max-width: 10%;" src="data:
+            //image/jpeg;base64,.'<?php //base64_encode($user->imagen)?>.'">
+                            <?php
+               //if(isset($foto)){
+                   //var_dump($foto);
+               //echo $user->imagen;    
+               //}
+               
+               ?>
+                        </div>
+                    </section>
+                    <div class="container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre Ride</th>
+                                    <th>Esta en</th>
+                                    <th>Va para</th>
+                                </tr>
+                            </thead>
+                            <form action="<?=base_url()?>Ride/editrides">
+                                <tbody>
+                                    <?php
+                  
+                            foreach ($rides as $ride): 
+                                
+              ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $ride['nombre']?>
+                                            </td>
+                                            <td>
+                                                <?php echo $ride['ir']?>
+                                            </td>
+                                            <td>
+                                                <?php echo $ride['va']?>
+                                            </td>
+                                            <td><a onclick="return confirm('deseas elimar al este usuarucho del sistema?');" href="<?php echo base_url()?>ride/deleterides?id=<?php echo $ride['id']; ?>">DELETE</a></td>
+                                            <td><a href="<?php echo base_url()?>ride/editrides?id=<?php echo $ride['id']; ?>">VER</a></td>
+                                        </tr>
+                                        <?php endforeach;?>
+                                </tbody>
+                            </form>
+                            <!--      <tr class="">
                                 <td>John</td>
                                 <td>Terminal de Buses</td>
                                 <td>Universidad Catolica</td>
@@ -115,17 +127,15 @@
                                 <td>UTN</td>
                                 <td><a href="">ver</a></td>
                                  <td><a href="">delete</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                            </tr>-->
+                            </tbody>
+                        </table>
+                    </div>
             </div>
         </div>
     </div>
-
     <script src="<?=base_url()?>/JS/Logica.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE4q3EdSiaMREAB5LWmTB6d5dqqZaa3HQ&libraries=places"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE4q3EdSiaMREAB5LWmTB6d5dqqZaa3HQ&amp;signed_in=true&amp;libraries=places&amp;callback=initAutocomplete" async="" defer=""></script>
 </body>

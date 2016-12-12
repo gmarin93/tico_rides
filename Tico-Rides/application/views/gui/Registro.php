@@ -24,28 +24,19 @@
                     <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo site_url('Ride/perf') ?>">Accesar
           <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                          
-                              <form action="<?=base_url()?>Ride/autenticar" class="" method="post">
-                                  <li>
-                               
-                                <a href="#">
-                                  
-                                    <input id="user-reg" name="user" class="form-control" type="text" placeholder="user" required>
-                                </a>
+                            <form action="<?=base_url()?>Ride/autenticar" class="" method="post">
+                                <li>
+                                    <a href="#">
+                                        <input id="user-reg" name="user" class="form-control" type="text" placeholder="user" required> </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <input id="pass-reg" name="pass" class="form-control" type="password" placeholder="Pass" required> </a>
+                                </li>
+                                <li>
+                                    <br>
+                                    <input type="submit" class="btn btn-default" value="Log In"> </form>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <input id="pass-reg" name="pass" class="form-control" type="password" placeholder="Pass" required>
-                                </a>
-                            </li>
-                            <li>
-                                
-                                   <br>
-                                    <input type="submit" class="btn btn-default" value="Log In">
-                                
-                                </form>
-                            </li>
-                             
                         </ul>
                     </li>
                     <li><a href="<?php echo site_url('Ride/perf') ?>">Principal</a></li>
@@ -73,17 +64,14 @@
                 <div class="">
                     <form id="datos" enctype="multipart/form-data" class="form-horizontal" method="post" action="<?=base_url()?>Ride/guardarUsuario">
                         <div class="">
-                             
-                             <div class="form-group">
-                               
-                                 <label class="label" for="pwd">Foto:</label>
-                                <br></br>
-                               <img id="img_destino" class="" style="max-width: 10%;
+                            <div class="form-group">
+                                <label class="label" for="pwd">Foto:</label>
+                                <br></br> <img id="img_destino" class="" style="max-width: 10%;
                                 max-width: 10%;
     margin-right: 844px;" src="<?=base_url()?>/IMAGES/uber-user.png" alt="Tu imagen">
-                                <br><br>
+                                <br>
+                                <br>
                                 <input id="imagen" class="input_img" name="imagen" size="30" type="file" required /> </div>
-                                
                             <div class="form-group">
                                 <label for="text">Nombre:</label>
                                 <br></br>
@@ -101,8 +89,7 @@
                                 <br></br>
                                 <input type="password" name="pass" class="" id="pass" placeholder="12345" required> </div>
                         </div>
-                        <input type="submit" value="Guardar" class="btn btn-default">
-                    </form>
+                        <input type="submit" value="Guardar" class="btn btn-default"> </form>
                 </div>
             </div>
         </div>

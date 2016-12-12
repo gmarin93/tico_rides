@@ -9,12 +9,9 @@
     <link rel="stylesheet" href="<?=base_url()?>/assets/bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url()?>/assets/AgregarRide.css">
     <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="<?=base_url()?>/JS/bootstrap.min.js"></script>
-</head>
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css"> </head>
 
-<body id="myPage" data-spy="scroll" onload="acces()" data-target=".navbar" data-offset="50">
+<body id="myPage" data-spy="scroll" onload="" data-target=".navbar" data-offset="50">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -23,7 +20,6 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="<?php echo site_url('Ride/perf') ?>">Perfil</a></li>
-                    <li><a href="<?php echo site_url('Ride/editride') ?>">Editar</a></li>
                 </ul>
             </div>
         </div>
@@ -48,15 +44,14 @@
                 <?php
                     
                 if(isset($_SESSION['user'])) {
-                    
+                 
                     $user=$_SESSION['user'];
-                    
                 }
     
     ?>
                     <h2 id="user1"><?php echo isset($user)?$user->usuario:''; ?></h2>
                     <section> <img id="logo-Uber" src="<?=base_url()?>/IMAGES/uber-user.png">
-                        <form id="datos" method="post" action="">
+                        <form id="datos" method="post" action="<?=base_url()?>Ride/guardarRide">
                             <div class="nombre">
                                 <label for="driver-name">Nombre Ride:</label>
                                 <br></br>
@@ -67,14 +62,14 @@
                             <div class="velocidad">
                                 <label for="driver-name">Esta en:</label>
                                 <br></br>
-                                <input id="estoy" type=" text" name="resta" value="" placeholder="Pital" required>
+                                <input id="autocomplete2" type=" text" name="resta" onfocus="geolocate()" value="" autocomplete="off" placeholder="Pital" required>
                                 <br/>
                                 <br></br>
                             </div>
                             <div class="velocidad2">
                                 <label for="driver-name">A donde va:</label>
                                 <br></br>
-                                <input id="voypara" type=" text" name="rva" value="" placeholder="San Jose" required>
+                                <input id="autocomplete" type=" text" name="rva" onfocus="geolocate()" value="" autocomplete="off" placeholder="San Jose" required>
                                 <br/>
                                 <br></br>
                             </div>
@@ -95,39 +90,36 @@
                             <div class="acerca">
                                 <label for="address">Descripcion:</label>
                                 <br></br>
-                                <textarea id="infoD" name="radir" rows="4" cols="25" required></textarea>
+                                <textarea id="infoD" name="rdir" rows="4" cols="25" required></textarea>
                                 <br>
                                 <br/> </div>
                             <div class="dias">
                                 <div class="">
                                     <div> Lunes
-                                        <input id="lunes" type="checkbox" name="l" value="" required>
+                                        <input id="lunes" type="checkbox" name="l" value="lunes">
                                         <br/> </div>
                                     <div> Martes
-                                        <input id="martes" type="checkbox" name="k" value="" required>
+                                        <input id="martes" type="checkbox" name="k" value="martes">
                                         <br/> </div>
                                     <div> Miercoles
-                                        <input id="miercoles" type="checkbox" name="m" value="" required>
+                                        <input id="miercoles" type="checkbox" name="m" value="miercoles">
                                         <br/> </div>
                                     <div> Jueves
-                                        <input id="jueves" type="checkbox" name="j" value="" required>
+                                        <input id="jueves" type="checkbox" name="j" value="jueves">
                                         <br/> </div>
                                     <div> Viernes
-                                        <input id="viernes" type="checkbox" name="v" value="" required>
+                                        <input id="viernes" type="checkbox" name="v" value="viernes">
                                         <br/> </div>
                                     <div> Sabado
-                                        <input id="sabado" type="checkbox" name="s" value="" required>
+                                        <input id="sabado" type="checkbox" name="s" value="sabado">
                                         <br/> </div>
                                     <div> Domingo
-                                        <input id="domingo" type="checkbox" name="d" value="" required>
+                                        <input id="domingo" type="checkbox" name="d" value="domingo">
                                         <br/> </div>
                                 </div>
                             </div>
-                            <button onclick="inicialize()" class="btnimagen" type="submit">B</button>
-                            <button onclick="inicialize()" class="btnimagen2" type="submit">B</button>
                             <div class="guardar">
-                                <button onclick="agregarRide()" class="btn" type="button" name="button">Guardar</button>
-                            </div>
+                                <input class="btn" type="submit" name="button" value="Guardar"> </div>
                             <div class="cancelar">
                                 <button onclick="limp()" class="btn" type="button" name="button">Cancelar</button>
                             </div>
@@ -136,7 +128,12 @@
             </section>
         </div>
     </div>
-    <script src="/JS/Logica.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?=base_url()?>/JS/bootstrap.min.js"></script>
+    <script src="<?=base_url()?>/JS/Logica.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE4q3EdSiaMREAB5LWmTB6d5dqqZaa3HQ&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE4q3EdSiaMREAB5LWmTB6d5dqqZaa3HQ&amp;signed_in=true&amp;libraries=places&amp;callback=initAutocomplete" async="" defer=""></script>
 </body>
 
 </html>

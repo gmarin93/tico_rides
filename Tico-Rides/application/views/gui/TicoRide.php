@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="<?=base_url()?>/assets/bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url()?>/assets/conf.css">
     <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="<?=base_url()?>/JS/bootstrap.min.js"></script>
@@ -25,29 +24,22 @@
                     <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo site_url('Ride/perf') ?>">Accesar
           <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                         <form action="<?=base_url()?>Ride/autenticar" class="" method="post">
-                                  <li>
-                               
-                                <a href="#">
-                                  
-                                    <input id="user-reg" name="user" class="form-control" type="text" placeholder="user" required>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <input id="pass-reg" name="pass" class="form-control" type="password" placeholder="Pass" required>
-                                </a>
-                            </li>
-                            <li>
-                                
-                                   <br>
-                                    <input type="submit" class="btn btn-default" value="Log In">
-                                
-                                </form>
+                            <form action="<?=base_url()?>Ride/autenticar" class="" method="post">
+                                <li>
+                                    <a href="#">
+                                        <input id="user-reg" name="user" class="form-control" type="text" placeholder="user" required> </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <input id="pass-reg" name="pass" class="form-control" type="password" placeholder="Pass" required> </a>
+                                </li>
+                                <li>
+                                    <br>
+                                    <input type="submit" class="btn btn-default" value="Log In"> </form>
                         </ul>
-                    </li>
-                    <li><a href="<?php echo site_url('Ride/reg') ?>">Registro</a></li>
-                    <li><a href="<?php echo site_url('Ride/acercade') ?>">Acerca de</a></li>
+                        </li>
+                        <li><a href="<?php echo site_url('Ride/reg') ?>">Registro</a></li>
+                        <li><a href="<?php echo site_url('Ride/acercade') ?>">Acerca de</a></li>
                 </ul>
             </div>
         </div>
@@ -69,18 +61,16 @@
             <div class="item"> <img src="<?=base_url()?>/IMAGES/body4.jpg" alt="City mall" width="1200" height="700"> </div>
             <div class="item"> <img src="<?=base_url()?>/IMAGES/body2.jpg" alt="Los Angeles" width="900" height="600"> </div>
             <div class="carousel-caption">
-                  <div class="container">
+                <div class="container">
                     <div class="Bienvenida">
                         <h2>Ocupa Ride?</h2> </div>
-                    <form class="form-inline" role="form">
+                    <form method="post" class="form-inline" action="<?php echo base_url()?>ride/busca_ride" role="form">
                         <div class="form-group">
                             <label class="sr-only" for="email">Email:</label>
-                            <input class="form-control" id="autocomplete" placeholder="Enter your address" onfocus="geolocate()" type="text" autocomplete="off"> </div>
-                        <button class="botonimagen" type="submit" class="">B</button>
+                            <input name="estoy" class="form-control" id="autocomplete" placeholder="Enter your address" onfocus="geolocate()" type="text" autocomplete="off" required> </div>
                         <div class="form-group">
                             <label class="sr-only" for="pwd">Password:</label>
-                            <input class="form-control" id="autocomplete2" placeholder="Enter your address" onfocus="geolocate2()" type="text" autocomplete="off"> </div>
-                        <button onclick="" class="botonimagen" type="submit" class="">B</button>
+                            <input name="va" class="form-control" id="autocomplete2" placeholder="Enter your address" onfocus="geolocate()" type="text" autocomplete="off" required> </div>
                         <button type="submit" class="btn btn-default">Buscar</button>
                     </form>
                     <table class="table">
@@ -92,7 +82,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="">
+                            <?php foreach ($todos as $ride): ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $ride['nombre']?>
+                                    </td>
+                                    <td>
+                                        <?php echo $ride['ir']?>
+                                    </td>
+                                    <td>
+                                        <?php echo $ride['va']?>
+                                    </td>
+                                    <td><a href="<?php echo base_url()?>ride/editridesP?id=<?php echo $ride['id']; ?>">ver</a></td>
+                                </tr>
+                                <?php endforeach;?>
+                                    <!--   <tr class="">
                                 <td>John</td>
                                 <td>Terminal de Buses</td>
                                 <td>Universidad Catolica</td>
@@ -109,17 +113,15 @@
                                 <td>Pizza Hut</td>
                                 <td>UTN</td>
                                 <td><a href="">ver</a></td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
     <script src="<?=base_url()?>/JS/Logica.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE4q3EdSiaMREAB5LWmTB6d5dqqZaa3HQ&libraries=places"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE4q3EdSiaMREAB5LWmTB6d5dqqZaa3HQ&amp;signed_in=true&amp;libraries=places&amp;callback=initAutocomplete" async="" defer=""></script>
 </body>

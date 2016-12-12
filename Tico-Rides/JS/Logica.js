@@ -13,6 +13,8 @@ var contfig=0;
 
 var placeSearch, autocomplete;
 var placeSearch2,autocomplete2;
+var placeSearch3, autocomplete3;
+var placeSearch4,autocomplete4;
 var componentForm = {
   street_number: 'short_name',
   route: 'long_name',
@@ -32,11 +34,21 @@ function initAutocomplete() {
     autocomplete2 = new google.maps.places.Autocomplete(
       /** @type {!HTMLInputElement} */(document.getElementById('autocomplete2')),
       {types: ['geocode']});
+    
+    autocomplete3 = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('estoy')),
+      {types: ['geocode']});
+
+    autocomplete4 = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('voypara')),
+      {types: ['geocode']});
 
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
   autocomplete.addListener('place_changed', fillInAddress);
   autocomplete2.addListener('place_changed', fillInAddress);
+  autocomplete3.addListener('place_changed', fillInAddress);
+  autocomplete4.addListener('place_changed', fillInAddress);
 }
 
 // [START region_fillform]
@@ -44,6 +56,8 @@ function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
   var place2 = autocomplete2.getPlace();
+  var place3 = autocomplete3.getPlace();
+  var place4 = autocomplete4.getPlace();
 
   for (var component in componentForm) {
     document.getElementById(component).value = '';
@@ -63,6 +77,22 @@ function fillInAddress() {
     var addressType = place2.address_components[i].types[0];
     if (componentForm[addressType]) {
       var val = place2.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+    
+     for (var i = 0; i < place3.address_components.length; i++) {
+    var addressType = place3.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place3.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+    
+     for (var i = 0; i < place4.address_components.length; i++) {
+    var addressType = place4.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place4.address_components[i][componentForm[addressType]];
       document.getElementById(addressType).value = val;
     }
   }
@@ -86,6 +116,8 @@ function geolocate() {
       });
       autocomplete.setBounds(circle.getBounds());
        autocomplete2.setBounds(circle.getBounds());
+        autocomplete3.setBounds(circle.getBounds());
+       autocomplete4.setBounds(circle.getBounds());
     });
   }
 }
@@ -127,6 +159,8 @@ function guardar(){
 function limp(){
 
   document.getElementById("datos").reset();
+      document.getElementById("nombreD").value='ljbnol';
+    
 }
 
 function logueo(){

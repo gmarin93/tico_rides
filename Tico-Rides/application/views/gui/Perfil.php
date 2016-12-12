@@ -36,7 +36,87 @@
 
           <li><a href="<?php echo site_url('Ride/conf') ?>">Configuracion</a></li>
           <li><a  href="<?php echo site_url('Ride/index') ?>">Salir</a></li>
+          
+    
+Tico-Rides
 
+Perfil
+Guardar
+    
+New Yorkkbarrantes
+
+Nombre Ride: 
+
+
+<div style=
+A PHP Error was encountered
+Severity: Notice
+
+Message: Undefined index: nombre
+
+Filename: gui/EditarRide.php
+
+Line Number: 72
+
+Backtrace:
+
+File: /opt/lampp/htdocs/Tico-Rides/application/views/gui/EditarRide.php
+Line: 72
+Function: _error_handler
+
+File: /opt/lampp/htdocs/Tico-Rides/application/controllers/Ride.php
+Line: 126
+Function: view
+
+File: /opt/lampp/htdocs/Tico-Rides/index.php
+Line: 315
+Function: require_once
+
+" placeholder="A la U" required> 
+
+
+Esta en: 
+
+
+Naranjo, Provincia de Alajuela, Costa Rica
+ 
+
+
+A donde va: 
+
+
+Heredia, Provincia de Heredia, Costa Rica
+ 
+
+
+Hora inicial: 
+
+
+3:10pm
+ 
+
+
+Hora Salida: 
+
+
+1:10pm
+ 
+
+
+Descripcion: 
+
+
+                                        prueba3                                    
+ 
+
+Lunes   
+Martes   
+Miercoles   
+Jueves   
+Viernes   
+Sabado   
+Domingo   
+Enviar
          <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo site_url('Ride/perf') ?>">Accesar
           <span class="caret"></span></a>
                         <ul class="dropdown-menu">

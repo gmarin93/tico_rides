@@ -9,12 +9,9 @@
     <link rel="stylesheet" href="<?=base_url()?>/assets/bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url()?>/assets/AgregarRide.css">
     <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="<?=base_url()?>/JS/bootstrap.min.js"></script>
-</head>
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css"> </head>
 
-<body id="myPage" data-spy="scroll" onload="acces()" data-target=".navbar" data-offset="50">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -49,94 +46,111 @@
                     
                 if(isset($_SESSION['user'])) {
                     
-                    $user=$_SESSION['user'];
                     
+                    $user=$_SESSION['user'];
+                    //$nombre=$_SESSION['nombre'];
+                    //$info=$_SESSION[$nombre];
+                    //$info= $ride;
+                    //var_dump($info);
+                
                 }
     
     ?>
                     <h2 id="user1"><?php echo isset($user)?$user->usuario:''; ?></h2>
                     <section> <img id="logo-Uber" src="<?=base_url()?>/IMAGES/uber-user.png">
-                        <form id="datos">
-                            <div class="nombre">
-                                <label for="driver-name">Nombre Ride:</label>
-                                <br></br>
-                                <input id="nombreD" type=" text" name="driver-name" value="" placeholder="A la U" required>
-                                <br/>
-                                <br></br>
-                            </div>
-                            <div class="velocidad">
-                                <label for="driver-name">Esta en:</label>
-                                <br></br>
-                                <input id="estoy" type=" text" name="driver-name" value="" placeholder="Pital" required>
-                                <br/>
-                                <br></br>
-                            </div>
-                            <div class="velocidad2">
-                                <label for="driver-name">A donde va:</label>
-                                <br></br>
-                                <input id="voypara" type=" text" name="driver-name" value="" placeholder="San Jose" required>
-                                <br/>
-                                <br></br>
-                            </div>
-                            <div class="inicial">
-                                <label for="driver-name">Hora inicial:</label>
-                                <br></br>
-                                <input id="horainD" type=" text" name="driver-name" value="" placeholder="4:00pm" required>
-                                <br/>
-                                <br></br>
-                            </div>
-                            <div class="salida">
-                                <label for="driver-name">Hora Salida:</label>
-                                <br></br>
-                                <input id="horafinD" type=" text" name="driver-name" value="" placeholder="6:00pm" required>
-                                <br/>
-                                <br></br>
-                            </div>
-                            <div class="acerca">
-                                <label for="address">Descripcion:</label>
-                                <br></br>
-                                <textarea id="infoD" name="address" rows="4" cols="25" required></textarea>
-                                <br>
-                                <br/> </div>
-                            <div class="dias">
-                                <div class="">
-                                    <div> Lunes
-                                        <input id="lunes" type="checkbox" name="" value="" required>
-                                        <br/> </div>
-                                    <div> Martes
-                                        <input id="martes" type="checkbox" name="" value="" required>
-                                        <br/> </div>
-                                    <div> Miercoles
-                                        <input id="miercoles" type="checkbox" name="" value="" required>
-                                        <br/> </div>
-                                    <div> Jueves
-                                        <input id="jueves" type="checkbox" name="" value="" required>
-                                        <br/> </div>
-                                    <div> Viernes
-                                        <input id="viernes" type="checkbox" name="" value="" required>
-                                        <br/> </div>
-                                    <div> Sabado
-                                        <input id="sabado" type="checkbox" name="" value="" required>
-                                        <br/> </div>
-                                    <div> Domingo
-                                        <input id="domingo" type="checkbox" name="" value="" required>
-                                        <br/> </div>
+                        <?php
+                  
+                            foreach ($ride as $info): 
+                             $dias= json_decode($info['dias']);  
+                                   //var_dump($info['dias']);
+                                   //echo $dias[2];
+              ?>
+                            <form id="datos" method="post" action="<?php echo base_url()?>ride/actualizarRide?id=<?php echo $info['id']; ?>">
+                                <div class="nombre">
+                                    <label for="driver-name">Nombre Ride:</label>
+                                    <br></br>
+                                    <input id="nombreD" type=" text" name="rnombre" value="<?php echo $info["nombre"] ?>" placeholder="A la U" required>
+                                    <br/>
+                                    <br></br>
                                 </div>
-                            </div>
-                            <button onclick="inicialize()" class="btnimagen" type="submit">B</button>
-                            <button onclick="inicialize()" class="btnimagen2" type="submit">B</button>
-                            <div class="guardar">
-                                <button onclick="agregarRide()" class="btn" type="button" name="button">Guardar</button>
-                            </div>
-                            <div class="cancelar">
-                                <button onclick="limp()" class="btn" type="button" name="button">Cancelar</button>
-                            </div>
+                                <div class="velocidad">
+                                    <label for="driver-name">Esta en:</label>
+                                    <br></br>
+                                    <input id="autocomplete" type=" text" name="resta" onfocus="geolocate()" value="<?php echo isset($info)?$info['ir']:''; ?>" placeholder="Pital" required>
+                                    <br/>
+                                    <br></br>
+                                </div>
+                                <div class="velocidad2">
+                                    <label for="driver-name">A donde va:</label>
+                                    <br></br>
+                                    <input id="autocomplete2" onfocus="geolocate2()" type="text" name="rva" value="<?php echo isset($info)?$info['va']:''; ?>" placeholder="San Jose" required>
+                                    <br/>
+                                    <br></br>
+                                </div>
+                                <div class="inicial">
+                                    <label for="driver-name">Hora inicial:</label>
+                                    <br></br>
+                                    <input id="horainD" type=" text" name="rinicia" value="<?php echo isset($info)?$info['hora_llegada']:''; ?>" placeholder="4:00pm" required>
+                                    <br/>
+                                    <br></br>
+                                </div>
+                                <div class="salida">
+                                    <label for="driver-name">Hora Salida:</label>
+                                    <br></br>
+                                    <input id="horafinD" type=" text" name="rsalida" value="<?php echo isset($info)?$info['hora_salida']:''; ?>" placeholder="6:00pm" required>
+                                    <br/>
+                                    <br></br>
+                                </div>
+                                <div class="acerca">
+                                    <label for="address">Descripcion:</label>
+                                    <br></br>
+                                    <textarea placeholder="Auto Toyota Terius Color Gris" id="infoD" name="rdir" rows="4" cols="25" required>
+                                        <?php echo isset($info)?$info['descripcion']:''; ?>
+                                    </textarea>
+                                    <br>
+                                    <br/> </div>
+                                <div class="dias">
+                                    <div class="">
+                                        <div> Lunes
+                                            <input id="lunes" type="checkbox" name="l" value="lunes" <?php if($dias[0]=="lunes" ){ echo 'checked="checked"';}?>>
+                                            <br/> </div>
+                                        <div> Martes
+                                            <input id="martes" type="checkbox" name="k" value="martes" <?php if($dias[1]=="martes" ){ echo 'checked="checked"';}?> >
+                                            <br/> </div>
+                                        <div> Miercoles
+                                            <input id="miercoles" type="checkbox" name="m" value="miercoles" <?php if($dias[2]=="miercoles" ){ echo 'checked="checked"';}?>>
+                                            <br/> </div>
+                                        <div> Jueves
+                                            <input id="jueves" type="checkbox" name="j" value="jueves" <?php if($dias[3]=="jueves" ){ echo 'checked="checked"';}?>>
+                                            <br/> </div>
+                                        <div> Viernes
+                                            <input id="viernes" type="checkbox" name="v" value="viernes" <?php if($dias[4]=="viernes" ){ echo 'checked="checked"';}?>>
+                                            <br/> </div>
+                                        <div> Sabado
+                                            <input id="sabado" type="checkbox" name="s" value="sabado" <?php if($dias[5]=="sabado" ){ echo 'checked="checked"';}?>>
+                                            <br/> </div>
+                                        <div> Domingo
+                                            <input id="domingo" type="checkbox" name="d" value="domingo" <?php if($dias[6]=="domingo" ){ echo 'checked="checked"';}?>>
+                                            <br/> </div>
+                                    </div>
+                                </div>
+                                <div class="guardar">
+                                    <input class="btn" type="submit" name="button"> </div>
+                                <div class="cancelar">
+                                    <button onclick="limp()" class="btn" type="button" name="button">Cancelar</button>
+                                </div>
             </div>
-            </form>
-            </section>
+            <?php endforeach;?>
+                </form>
+                </section>
         </div>
     </div>
-    <script src="/JS/Logica.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?=base_url()?>/JS/bootstrap.min.js"></script>
+    <script src="<?=base_url()?>/JS/Logica.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE4q3EdSiaMREAB5LWmTB6d5dqqZaa3HQ&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE4q3EdSiaMREAB5LWmTB6d5dqqZaa3HQ&amp;signed_in=true&amp;libraries=places&amp;callback=initAutocomplete" async="" defer=""></script>
 </body>
 
 </html>
