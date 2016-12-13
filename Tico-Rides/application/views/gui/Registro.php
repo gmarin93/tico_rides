@@ -24,7 +24,7 @@
                     <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo site_url('Ride/perf') ?>">Accesar
           <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <form action="<?=base_url()?>Ride/autenticar" class="" method="post">
+                            <form action="<?=base_url()?>User/autenticar" class="" method="post">
                                 <li>
                                     <a href="#">
                                         <input id="user-reg" name="user" class="form-control" type="text" placeholder="user" required> </a>
@@ -62,7 +62,7 @@
             <div class="item"> <img src="<?=base_url()?>/IMAGES/body2.jpg" alt="Los Angeles" width="900" height="600"> </div>
             <div class="carousel-caption">
                 <div class="">
-                    <form id="datos" enctype="multipart/form-data" class="form-horizontal" method="post" action="<?=base_url()?>Ride/guardarUsuario">
+                    <form id="datos" enctype="multipart/form-data" class="form-horizontal" method="post" action="<?=base_url()?>User/guardarUsuario">
                         <div class="">
                             <div class="form-group">
                                 <label class="label" for="pwd">Foto:</label>

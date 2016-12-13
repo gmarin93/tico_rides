@@ -55,7 +55,7 @@
                        
                        
                        
-                        <form id="datos" method="post" action="<?php echo base_url()?>ride/actualizarUser">
+                        <form id="datos" method="post" action="<?php echo base_url()?>User/actualizarUser">
                             <div class="nombre">
                                 <label for="driver-name">Nombre:</label>
                                 <br></br>

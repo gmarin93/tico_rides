@@ -24,7 +24,7 @@
                     <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo site_url('Ride/perf') ?>">Accesar
           <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <form action="<?=base_url()?>Ride/autenticar" class="" method="post">
+                            <form action="<?=base_url()?>User/autenticar" class="" method="post">
                                 <li>
                                     <a href="#">
                                         <input id="user-reg" name="user" class="form-control" type="text" placeholder="user" required> </a>

@@ -13,6 +13,7 @@ class Ride extends CI_Controller {
 		
 	}
     
+    //Carga la pagina principal con los rides
     
 	public function index()
 	{
@@ -22,6 +23,8 @@ class Ride extends CI_Controller {
         
        $this->load->view('gui/TicoRide',$data);
 	}
+    
+    //Busca los ride
     
     public function busca_ride()
 	{
@@ -36,6 +39,8 @@ class Ride extends CI_Controller {
        $this->load->view('gui/TicoRide',$data);
 	}
     
+    //Log out
+    
     public function salir()
 	{
         $this->load->model('Ride_usuario');
@@ -44,6 +49,7 @@ class Ride extends CI_Controller {
        $this->load->view('gui/TicoRide',$data);
         session_destroy();
 	}
+    //Carga la pagina para Registar
     
     public function reg()
 	{
@@ -54,6 +60,7 @@ class Ride extends CI_Controller {
       $this->load->view('gui/Actualizar');
 	}
     
+    //Carga la pagina perfil con sus rides
        public function perf()
 	{
         
@@ -77,6 +84,8 @@ class Ride extends CI_Controller {
         }
 	}
     
+    // Carga la configuracion del usuario
+    
      public function conf()
 	{
       if(isset($_SESSION['user'])){
@@ -87,6 +96,9 @@ class Ride extends CI_Controller {
             redirect('/Ride/index');  
         }
 	}
+    
+    //Carga un la pagina para agregar rides
+    
      public function addride()
 	{
         if(isset($_SESSION['user'])){
@@ -98,6 +110,8 @@ class Ride extends CI_Controller {
         }
         
 	}
+    //Carga la pagina para saber acerca de la pagina
+    
      public function acercade()
 	{
           
@@ -105,6 +119,9 @@ class Ride extends CI_Controller {
         
         
 	}
+    
+    //Carga el formulario para editar los rides
+    
       public function editride()
 	{
            if(isset($_SESSION['user'])){
@@ -115,6 +132,8 @@ class Ride extends CI_Controller {
             redirect('/Ride/index');  
         }
 	}
+    
+    // Carga el formulario para edtar los rides
     
      public function editrides()
 	{
@@ -135,6 +154,8 @@ class Ride extends CI_Controller {
         }
 	}
     
+    //Carga el formulario para editar el ride
+    
      public function editridesP()
 	{
          $this->load->model('Ride_usuario');
@@ -151,6 +172,8 @@ class Ride extends CI_Controller {
             
         
 	}
+    
+    //Elimina los rides desde la tabla
     
     public function deleterides()
 	{
@@ -172,48 +195,8 @@ class Ride extends CI_Controller {
         }
 	}
     
-    //Insercion a la base de datos
-    
-    public function guardarUsuario() {
-        
-        
-       $config['upload_path'] = './uploads/';
-       $config['allowed_types'] = 'gif|jpg|png|jpeg';
-       $config['max_size']    = '1000000';
-       $config['overwrite'] = TRUE;
-       $config['remove_spaces'] = TRUE;
-       $config['encrypt_name'] = TRUE;
-       $this->load->library('upload', $config);
-       $this->upload->do_upload('imagen');
-       $data_upload_files = $this->upload->data();
-       $user_photo['imagen'] = $data_upload_files['full_path'];
-           
-        $this->load->model('Usuario');
-		$user['nombre'] = $this->input->post('nombre');
-       
-     
-		$user['telefono'] = $this->input->post('numero');
-        $user['usuario'] = $this->input->post('user');
-        $user['contrasena'] = $this->input->post('pass');
-        
-        $comprobar=$this->Usuario->validarexiste($user['usuario']);
-        
-        if(sizeof($comprobar) > 0){
-           
-            echo '<script language="javascript">alert("El usuario ya existe");</script>'; 
-           //redirect('/Ride/perf');  
-        }
-        else{
-               $result = $this->Usuario->nuevo_usuario($user,$user_photo);
-        
-               redirect('/Ride/reg');
-        }
-        
-     
-        
-	}
-    
-    
+    //Carga el formulario para guardar el ride
+
     public function guardarRide() {
         
           $var= $_SESSION['user'];
@@ -241,6 +224,8 @@ class Ride extends CI_Controller {
         
 	}
     
+    //Carga el formulario para actualizar el ride
+    
     public function actualizarRide() {
         
           $var= $_SESSION['user'];
@@ -267,98 +252,7 @@ class Ride extends CI_Controller {
         }
         
 	}
-    
-    public function actualizarUser() {
-        
-          $var= $_SESSION['user'];
-         // $id['id'] =$_GET['id'];   
-        
-        $this->load->model('Usuario');
-		$user['nombre'] = $this->input->post('nombre');
-        $user['acerca'] = $this->input->post('acerca');
-       	$user['velocidad'] = $this->input->post('velocidad');
-        $user['id'] = $var->id;
-        $user['telefono'] = $var->telefono;
-        $user['usuario'] = $var->usuario;
-        $user['contrasena'] = $var->contrasena;
-      
-       
-        
-       // $dias = $var->dias;
-        
-       // $user_ride['dias']=json_encode($dias);
-    
-       // if(isset($dias)){
-               $result = $this->Usuario->actualizarUser($user);
-        
-       if(!$result){
-           
-            echo '<script language="javascript">alert("Los datos se cargaran cuando vuelva a ingresar");</script>'; 
-           redirect('/ride/perf', 'refresh'); 
-       }
-        else{
-            echo '<script language="javascript">alert("Error");</script>';
-        }
-            
-        //}
-       // else{
-         //    echo '<script language="javascript">alert("No selecciono los dias");</script>'; 
-        //}
-        
-	}
-    
-     public function actualizarallUser() {
-        
-          $var= $_SESSION['user'];
-         // $id['id'] =$_GET['id'];   
-        
-         
-       $config['upload_path'] = './uploads/';
-       $config['allowed_types'] = 'gif|jpg|png|jpeg';
-       $config['max_size']    = '1000000';
-       $config['overwrite'] = TRUE;
-       $config['remove_spaces'] = TRUE;
-       $config['encrypt_name'] = TRUE;
-       $this->load->library('upload', $config);
-       $this->upload->do_upload('imagen');
-       $data_upload_files = $this->upload->data();
-       $user_photo['imagen'] = $data_upload_files['full_path'];
-           
-        $this->load->model('Usuario');
-		$user['nombre'] = $this->input->post('nombre');
-       
-        $user['id']=$var->id;
-		$user['telefono'] = $this->input->post('numero');
-        $user['usuario'] = $this->input->post('user');
-        $user['contrasena'] = $this->input->post('pass');
-        
-        $comprobar=$this->Usuario->validarexiste($user['usuario']);
-         
-          
-        if(sizeof($comprobar) > 0){
-           
-             echo "<script> 
-              alert('El usuario ya existe');
-          </script>"; 
-              redirect('Ride/act', 'refresh');
-        }
-        else{
-                $result = $this->Usuario->actualizarUser($user);
-        
-       if(!$result){
-           
-            echo '<script language="javascript">alert("Los datos se cargaran cuando vuelva a ingresar");</script>'; 
-           redirect('/', 'refresh');
-             
-       }
-        else{
-            echo '<script language="javascript">alert("Error");</script>';
-        }
-        
-             //  redirect('/Ride/reg');
-        }
-      
-       
+
         
        // $dias = $var->dias;
         
@@ -375,7 +269,7 @@ class Ride extends CI_Controller {
 	}
     
     
-    
+    //Funcion para cargar la foto
     
 /*function cargar_foto($Id){
 
@@ -384,46 +278,10 @@ header("Content-type: image/jpeg");
 print($image);
 
 }*/
-    
-    
-    public function autenticar() {
-        
-		
-		$user = $this->input->post('user');
-		$pass = $this->input->post('pass');
-	
-		$this->load->model('Usuario');
-		$r = $this->Usuario->autenticar($user, $pass);
-       
-		if(sizeof($r) > 0) {
-            
-            session_start();
-              
-            //$var= $_SESSION['user'];
-           // $s = $this->Usuario->usuario_foto($var->id);
-           
-        
-            //$m='<img style="width:38px;" src="data:
-            //image/jpeg;base64,'.base64_encode($s['imagen']).'"/>';
-        
-             $this->session->set_userdata('user', $r[0]);
-             //$this->session->set_userdata('userf',$s);
-            
-			// $this->load->view('gui/Perfil');
-            
-            if(isset($_SESSION['user'])){
-               
-                redirect('/Ride/perf');    
-            }
-            
-		} else {
-			echo '<script language="javascript">alert("Acceso invalido");</script>'; 
-           redirect('/Ride/salir');  
-            
-		}
-	}
-    
-    public function cargar_rides(){
+
+//Carga todos los rides
+
+    function cargar_rides(){
         
         $this->load->model('Ride_usuario');
         
@@ -437,4 +295,4 @@ print($image);
     
     
 
-}
+

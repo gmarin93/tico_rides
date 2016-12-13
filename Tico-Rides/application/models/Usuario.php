@@ -7,6 +7,7 @@
             parent::__construct();
      }
         
+        //Registra un nuevo usuario
     
     function nuevo_usuario($data,$user_photo)
 	{  
@@ -16,6 +17,7 @@
          $this->db->insert('usuario_foto',$user_photo);
         
 	}
+        //Auntentica al usuario
         
     function autenticar($user, $pass) {
     $query = $this->db->get_where('usuarios',
@@ -23,6 +25,8 @@
 
 	  return $query->result_object();
   }
+        
+//Inserta la foto con su usuario
         
        function usuario_foto($id) {
     $query = $this->db->get_where('usuario_foto',
@@ -32,12 +36,17 @@
 
 	  return $row;
   }
+    
+        //Actualiza el usuario
         
      function actualizarUser($data)
 	{
       $this->db->where('id', $data['id']);
 $this->db->update('usuarios', $data); 
     }
+        
+    //Validar si el usuario existe    
+        
      function validarexiste($username) {
     $query = $this->db->get_where('usuarios',
       array('usuario' => $username));

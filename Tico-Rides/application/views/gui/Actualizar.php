@@ -56,7 +56,7 @@
     ?>
                
                 <div class="">
-                    <form id="datos" enctype="multipart/form-data" class="form-horizontal" method="post" action="<?=base_url()?>Ride/actualizarallUser">
+                    <form id="datos" enctype="multipart/form-data" class="form-horizontal" method="post" action="<?=base_url()?>User/actualizarallUser">
                         <div class="">
                             <div class="form-group">
                                 <label class="label" for="pwd">Foto:</label>

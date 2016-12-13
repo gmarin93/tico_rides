@@ -7,12 +7,15 @@
             parent::__construct();
      }
         
-    
+    //Agrega un nuevo Ride
+        
     function nuevo_ride($data)
 	{  
       
          $this->db->insert('rides',$data);
     }
+        
+        //Carga los ride por ID
         
     function cargar_rides($id){
         
@@ -24,6 +27,7 @@
   
         
     }
+        //Busca los ride por lugar
         
      function cargar_rides_lugar($ride){
         
@@ -35,7 +39,7 @@
   
         
     }
-        
+        //Busca los ride por ID
         
         function buscarRide($id)
 	{
@@ -44,7 +48,7 @@
 	  return $query->result_array();
  
 	}
-
+        //Carga todos los rides
         
     function cargar_todos(){
         
@@ -52,12 +56,14 @@
 	  return $query->result_array();
         
     } 
+        //Elimina los rides por ID
         
        function eliminarRide($id)
 	{
         $this->db->where('id',$id);
 		return $this->db->delete('rides');
     }
+        //Actualiza los ride
         
      function actualizarRide($id,$data)
 	{
