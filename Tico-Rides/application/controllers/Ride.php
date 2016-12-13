@@ -294,7 +294,7 @@ class Ride extends CI_Controller {
        if(!$result){
            
             echo '<script language="javascript">alert("Los datos se cargaran cuando vuelva a ingresar");</script>'; 
-            redirect('/Ride/perf');  
+           redirect('/ride/perf', 'refresh'); 
        }
         else{
             echo '<script language="javascript">alert("Error");</script>';
@@ -337,8 +337,10 @@ class Ride extends CI_Controller {
           
         if(sizeof($comprobar) > 0){
            
-            echo '<script language="javascript">alert("El nombre de usuario ya existe");</script>'; 
-           //redirect('/Ride/perf');  
+             echo "<script> 
+              alert('El usuario ya existe');
+          </script>"; 
+              redirect('Ride/act', 'refresh');
         }
         else{
                 $result = $this->Usuario->actualizarUser($user);
@@ -346,6 +348,7 @@ class Ride extends CI_Controller {
        if(!$result){
            
             echo '<script language="javascript">alert("Los datos se cargaran cuando vuelva a ingresar");</script>'; 
+           redirect('/', 'refresh');
              
        }
         else{

@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label for="pwd">Contrasena:</label>
                                 <br></br>
-                                <input type="password" value="<?php echo isset($user)?$user->contrasena:''; ?>" maxlength="6" name="pass" minlength="6" class="" id="pass" placeholder="12345" required> </div>
+                                <input type="password" value="<?php echo isset($user)?$user->contrasena:''; ?>" maxlength="6" name="pass" minlength="6" class="" id="pass" placeholder="123456" required> </div>
                         </div>
                         <input type="submit" value="Actualizar" class="btn btn-default"> </form>
                 </div>
