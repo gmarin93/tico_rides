@@ -49,6 +49,10 @@ class Ride extends CI_Controller {
 	{
       $this->load->view('gui/Registro');
 	}
+    public function act()
+	{
+      $this->load->view('gui/Actualizar');
+	}
     
        public function perf()
 	{
@@ -302,6 +306,71 @@ class Ride extends CI_Controller {
         //}
         
 	}
+    
+     public function actualizarallUser() {
+        
+          $var= $_SESSION['user'];
+         // $id['id'] =$_GET['id'];   
+        
+         
+       $config['upload_path'] = './uploads/';
+       $config['allowed_types'] = 'gif|jpg|png|jpeg';
+       $config['max_size']    = '1000000';
+       $config['overwrite'] = TRUE;
+       $config['remove_spaces'] = TRUE;
+       $config['encrypt_name'] = TRUE;
+       $this->load->library('upload', $config);
+       $this->upload->do_upload('imagen');
+       $data_upload_files = $this->upload->data();
+       $user_photo['imagen'] = $data_upload_files['full_path'];
+           
+        $this->load->model('Usuario');
+		$user['nombre'] = $this->input->post('nombre');
+       
+        $user['id']=$var->id;
+		$user['telefono'] = $this->input->post('numero');
+        $user['usuario'] = $this->input->post('user');
+        $user['contrasena'] = $this->input->post('pass');
+        
+        $comprobar=$this->Usuario->validarexiste($user['usuario']);
+         
+          
+        if(sizeof($comprobar) > 0){
+           
+            echo '<script language="javascript">alert("El nombre de usuario ya existe");</script>'; 
+           //redirect('/Ride/perf');  
+        }
+        else{
+                $result = $this->Usuario->actualizarUser($user);
+        
+       if(!$result){
+           
+            echo '<script language="javascript">alert("Los datos se cargaran cuando vuelva a ingresar");</script>'; 
+             
+       }
+        else{
+            echo '<script language="javascript">alert("Error");</script>';
+        }
+        
+             //  redirect('/Ride/reg');
+        }
+      
+       
+        
+       // $dias = $var->dias;
+        
+       // $user_ride['dias']=json_encode($dias);
+    
+       // if(isset($dias)){
+             
+            
+        //}
+       // else{
+         //    echo '<script language="javascript">alert("No selecciono los dias");</script>'; 
+        //}
+        
+	}
+    
     
     
     

@@ -79,7 +79,7 @@
                                     <input class="btn" type="submit" name="button" value="Actualizar">
                                 </div>
                                 <div class="cancelar">
-                                    <button class="btn" type="button" name="button">Ver Más</button>
+                                    <a class="btn" href="<?php echo site_url('Ride/act') ?>" name="button">Avanzada</a>
                                 </div>
                             </div>
                         </form>
