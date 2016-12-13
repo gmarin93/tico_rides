@@ -32,7 +32,18 @@
 
 	  return $row;
   }
-          
+        
+     function actualizarUser($data)
+	{
+      $this->db->where('id', $data['id']);
+$this->db->update('usuarios', $data); 
+    }
+     function validarexiste($username) {
+    $query = $this->db->get_where('usuarios',
+      array('usuario' => $username));
+
+	  return $query->result_object();
+  }     
         
         
        

@@ -71,7 +71,7 @@
     margin-right: 844px;" src="<?=base_url()?>/IMAGES/uber-user.png" alt="Tu imagen">
                                 <br>
                                 <br>
-                                <input id="imagen" class="input_img" name="imagen" size="30" type="file" required /> </div>
+                                <input style="color: transparent" id="imagen" class="input_img" name="imagen" size="30" type="file" required /> </div>
                             <div class="form-group">
                                 <label for="text">Nombre:</label>
                                 <br></br>
@@ -87,7 +87,7 @@
                             <div class="form-group">
                                 <label for="pwd">Contrasena:</label>
                                 <br></br>
-                                <input type="password" name="pass" class="" id="pass" placeholder="12345" required> </div>
+                                <input type="password" maxlength="6" name="pass" minlength="6" class="" id="pass" placeholder="12345" required> </div>
                         </div>
                         <input type="submit" value="Guardar" class="btn btn-default"> </form>
                 </div>

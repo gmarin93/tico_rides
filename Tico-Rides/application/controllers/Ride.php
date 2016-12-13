@@ -191,7 +191,21 @@ class Ride extends CI_Controller {
 		$user['telefono'] = $this->input->post('numero');
         $user['usuario'] = $this->input->post('user');
         $user['contrasena'] = $this->input->post('pass');
-        $result = $this->Usuario->nuevo_usuario($user,$user_photo);
+        
+        $comprobar=$this->Usuario->validarexiste($user['usuario']);
+        
+        if(sizeof($comprobar) > 0){
+           
+            echo '<script language="javascript">alert("El usuario ya existe");</script>'; 
+           //redirect('/Ride/perf');  
+        }
+        else{
+               $result = $this->Usuario->nuevo_usuario($user,$user_photo);
+        
+               redirect('/Ride/reg');
+        }
+        
+     
         
 	}
     
@@ -249,6 +263,47 @@ class Ride extends CI_Controller {
         }
         
 	}
+    
+    public function actualizarUser() {
+        
+          $var= $_SESSION['user'];
+         // $id['id'] =$_GET['id'];   
+        
+        $this->load->model('Usuario');
+		$user['nombre'] = $this->input->post('nombre');
+        $user['acerca'] = $this->input->post('acerca');
+       	$user['velocidad'] = $this->input->post('velocidad');
+        $user['id'] = $var->id;
+        $user['telefono'] = $var->telefono;
+        $user['usuario'] = $var->usuario;
+        $user['contrasena'] = $var->contrasena;
+      
+       
+        
+       // $dias = $var->dias;
+        
+       // $user_ride['dias']=json_encode($dias);
+    
+       // if(isset($dias)){
+               $result = $this->Usuario->actualizarUser($user);
+        
+       if(!$result){
+           
+            echo '<script language="javascript">alert("Los datos se cargaran cuando vuelva a ingresar");</script>'; 
+            redirect('/Ride/perf');  
+       }
+        else{
+            echo '<script language="javascript">alert("Error");</script>';
+        }
+            
+        //}
+       // else{
+         //    echo '<script language="javascript">alert("No selecciono los dias");</script>'; 
+        //}
+        
+	}
+    
+    
     
 /*function cargar_foto($Id){
 

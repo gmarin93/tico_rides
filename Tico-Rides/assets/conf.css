@@ -35,6 +35,12 @@ max-width:100%;
     
 }
 
+a {
+    color: rgb(237, 243, 241);
+    text-decoration: none;
+    font: bold 120% sans-serif;
+}
+
 h5{
 
   color:white;
@@ -74,6 +80,7 @@ input{
       left:9%;
       padding-bottom:0%;
       position:fixed;
+      font: bold 120% sans-serif;
     }
 
   @media (max-width: 600px) {

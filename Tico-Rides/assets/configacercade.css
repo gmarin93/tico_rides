@@ -14,6 +14,13 @@
   font-size: 20px;
 }
 
+a {
+    color: rgb(237, 243, 241);
+    text-decoration: none;
+    font: bold 120% sans-serif;
+}
+
+
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes example {

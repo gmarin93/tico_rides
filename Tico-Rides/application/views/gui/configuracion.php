@@ -52,31 +52,34 @@
     ?>
                     <h2 id="user1"><?php echo isset($user)?$user->usuario:''; ?></h2>
                     <section> <img id="logo-Uber" src="<?=base_url()?>/IMAGES/uber-user.png">
-                        <form id="datos">
+                       
+                       
+                       
+                        <form id="datos" method="post" action="<?php echo base_url()?>ride/actualizarUser">
                             <div class="nombre">
                                 <label for="driver-name">Nombre:</label>
                                 <br></br>
-                                <input id="nomconfig" type=" text" name="driver-name" value="" placeholder="Glenn Marin">
+                                <input id="nomconfig" type=" text" name="nombre" value="<?php echo isset($user)?$user->nombre:''; ?>" placeholder="Glenn Marin" value required>
                                 <br/>
                                 <br></br>
                                 <div class="velocidad">
                                     <label for="driver-name">Velocidad:</label>
                                     <br></br>
-                                    <input id="velconfig" type=" text" name="driver-name" value="" placeholder="km/h">
+                                    <input id="velconfig" type=" text" name="velocidad" value="<?php echo isset($user)?$user->velocidad:''; ?>" placeholder="km/h" required>
                                     <br/>
                                     <br></br>
                                 </div>
                                 <div class="acerca">
                                     <label for="address">Acerca de mi:</label>
                                     <br></br>
-                                    <textarea id="acercaconfig" name="address" rows="4" cols="25"></textarea>
+                                    <textarea id="acercaconfig" name="acerca" name="address" rows="4" cols="25" required><?php echo isset($user)?$user->acerca:''; ?></textarea>
                                     <br>
                                     <br/> </div>
                                 <div class="guardar">
-                                    <button onclick="guardarConfig()" class="btn" type="button" name="button">Guardar</button>
+                                    <input class="btn" type="submit" name="button" value="Actualizar">
                                 </div>
                                 <div class="cancelar">
-                                    <button class="btn" type="button" name="button">Cancelar</button>
+                                    <button class="btn" type="button" name="button">Ver Más</button>
                                 </div>
                             </div>
                         </form>

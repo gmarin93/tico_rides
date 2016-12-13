@@ -14,6 +14,12 @@
     position: absolute;
     font-family: monospace;
 }
+a {
+    color: rgb(237, 243, 241);
+    text-decoration: none;
+    font: bold 120% sans-serif;
+}
+
 
 .acerca{
 

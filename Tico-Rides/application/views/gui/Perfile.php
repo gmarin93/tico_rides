@@ -101,7 +101,7 @@
                                             <td>
                                                 <?php echo $ride['va']?>
                                             </td>
-                                            <td><a onclick="return confirm('deseas elimar al este usuarucho del sistema?');" href="<?php echo base_url()?>ride/deleterides?id=<?php echo $ride['id']; ?>">DELETE</a></td>
+                                            <td><a onclick="return confirm('deseas continuar?');" href="<?php echo base_url()?>ride/deleterides?id=<?php echo $ride['id']; ?>">DELETE</a></td>
                                             <td><a href="<?php echo base_url()?>ride/editrides?id=<?php echo $ride['id']; ?>">VER</a></td>
                                         </tr>
                                         <?php endforeach;?>

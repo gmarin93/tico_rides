@@ -10,6 +10,12 @@
 
 }
 
+a {
+    color: rgb(237, 243, 241);
+    text-decoration: none;
+    font: bold 120% sans-serif;
+}
+
 .table {
     width: 128%;
     max-width: 133%;
@@ -100,6 +106,7 @@ input{
       left:9%;
       padding-bottom:0%;
       position:fixed;
+      font: bold 120% sans-serif;
     }
 
   @media (max-width: 600px) {
